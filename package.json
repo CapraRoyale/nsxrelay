@@ -1,0 +1,31 @@
+{
+  "name": "nsxrelay",
+  "version": "0.5.1",
+  "description": "Node.js based client designed for a Raspberry PI to allow web control of a Sainsmart 16-relay 12V board",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CapraRoyale/nsxrelay.git"
+  },
+  "keywords": [
+    "node",
+    "nsx",
+    "relay",
+    "sainsmart",
+    "rpi",
+    "raspberrypi",
+    "reaspberry",
+    "pi",
+    "raspbian"
+  ],
+  "author": "Siege Lehman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CapraRoyale/nsxrelay/issues"
+  },
+  "homepage": "https://github.com/CapraRoyale/nsxrelay#readme"
+}
