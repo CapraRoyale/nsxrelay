@@ -1,23 +1,7 @@
-var express = require("express");
-var app = express();
-
-var path = require("path");
-
-var PORT = process.env.PORT || 8080;
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 
 var relayGPIO = [2, 3, 4, 14, 15, 18, 17, 27, 22, 23, 24, 10, 9, 11, 25, 8]; // This is the array that contains all GPIO pins used for the relays
 
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "../relayTest/public/index.html"));
-});
-
-app.listen(PORT, function () {
-  console.log("App listening on PORT: " + PORT);
-});
 
 var blinkSequence = function (RelayObj) { // Create function to contain a timed switch to test each connected relay
 
@@ -49,17 +33,6 @@ var blinkSequence = function (RelayObj) { // Create function to contain a timed 
 // };
 
 // arrayAll();
-
-
-app.get("/:relayNum", function (req, res) {
-  var relayNumber = req.params.relayNum
-  // Express res.sendFile sends the provided .html file back to the client
-  // With res.sendFile, you need to use the absolute path of the directory that the executing script is in (development or production directory). That said, path.join() uses __dirname for the absolute path of the directory and joins it at the relative path of the .html file
-  console.log("User Requesting relay number " + relayNumber)
-  var relayHTTPreq = new Gpio(relayNumber, 'high');
-  blinkSequence(relayHTTPreq);
-  // res.send(relayNumber);
-});
 
 // var indexCount = 0; //a counter
 // dir = "up"; //variable for flowing direction
