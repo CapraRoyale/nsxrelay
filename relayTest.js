@@ -2,50 +2,50 @@ var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 
 var relayGPIO = [2, 3, 4, 14, 15, 18, 17, 27, 22, 23, 24, 10, 9, 11, 25, 8]; // This is the array that contains all GPIO pins used for the relays
 
-// var blinkSequence = function (RelayObj) { // Create function to contain a timed switch to test each connected relay
+var blinkSequence = function (RelayObj) { // Create function to contain a timed switch to test each connected relay
 
-//   var blinkInterval = setInterval(blinkRelay, 200); //run the blinkRelay function every x secs
+  var blinkInterval = setInterval(blinkRelay, 200); //run the blinkRelay function every x secs
 
-//   function blinkRelay() { //function to start blinking
-//     if (RelayObj.readSync() === 0) { //check the pin state, if the state is 0 (or off)
-//       RelayObj.writeSync(1); //set pin state to 1 (turn RelayObj on)
-//     } else {
-//       RelayObj.writeSync(0); //set pin state to 0 (turn RelayObj off)
-//     }
-//   }
+  function blinkRelay() { //function to start blinking
+    if (RelayObj.readSync() === 0) { //check the pin state, if the state is 0 (or off)
+      RelayObj.writeSync(1); //set pin state to 1 (turn RelayObj on)
+    } else {
+      RelayObj.writeSync(0); //set pin state to 0 (turn RelayObj off)
+    }
+  }
 
-//   function endBlink() { //function to stop blinking
-//     clearInterval(blinkInterval); // Stop blink intervals
-//     RelayObj.writeSync(0); // Turn RelayObj off
-//     RelayObj.unexport(); // Unexport GPIO to free resources
-//   }
+  function endBlink() { //function to stop blinking
+    clearInterval(blinkInterval); // Stop blink intervals
+    RelayObj.writeSync(0); // Turn RelayObj off
+    RelayObj.unexport(); // Unexport GPIO to free resources
+  }
 
-//   setTimeout(endBlink, 5000); //stop blinking after 5 seconds
-// }
+  setTimeout(endBlink, 5000); //stop blinking after 5 seconds
+}
 
-// function arrayAll() {
-//   for (let i = 0; i < relayGPIO.length; i++) {
-//     var j = relayGPIO[i];
-//     var relayNum = new Gpio(j, 'high');
-//     blinkSequence(relayNum);
-//   }
-// };
-
-// arrayAll();
-
-var indexCount = 0; //a counter
-dir = "up"; //variable for flowing direction
-
-function flowingRelays() { //function for flowing Leds
-  relayGPIO.forEach(function (relayNum) { //for each item in array
-    var relayObj = new Gpio(relayNum, 'high');
-    relayObj.writeSync(1); //turn off relay
-  });
-  if (indexCount == 0) dir = "up"; //set flow direction to "up" if the count reaches zero
-  if (indexCount >= relayGPIO) dir = "down"; //set flow direction to "down" if the count reaches 7
-  if (dir == "down") indexCount--; //count downwards if direction is down
-  relayGPIO[indexCount].writeSync(1); //turn on LED that where array index matches count
-  if (dir == "up") indexCount++ //count upwards if direction is up
+function arrayAll() {
+  for (let i = 0; i < relayGPIO.length; i++) {
+    var j = relayGPIO[i];
+    var relayNum = new Gpio(j, 'high');
+    blinkSequence(relayNum);
+  }
 };
 
-flowingRelays();
+arrayAll();
+
+// var indexCount = 0; //a counter
+// dir = "up"; //variable for flowing direction
+
+// function flowingRelays() { //function for flowing Leds
+//   relayGPIO.forEach(function (relayNum) { //for each item in array
+//     var relayObj = new Gpio(relayNum, 'high');
+//     relayObj.writeSync(1); //turn off relay
+//   });
+//   if (indexCount == 0) dir = "up"; //set flow direction to "up" if the count reaches zero
+//   if (indexCount >= relayGPIO) dir = "down"; //set flow direction to "down" if the count reaches 7
+//   if (dir == "down") indexCount--; //count downwards if direction is down
+//   relayGPIO[indexCount].writeSync(1); //turn on LED that where array index matches count
+//   if (dir == "up") indexCount++ //count upwards if direction is up
+// };
+
+// flowingRelays();
