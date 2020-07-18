@@ -1,8 +1,9 @@
 // Import relevant components
 import React from 'react';
-import RelayButton from './RelayButton';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import gpio from "onoff/gpio";
 
 // Contain all GPIO pins and associated relay info in an array of objects
 const relayGPIO = [
@@ -25,14 +26,20 @@ const relayGPIO = [
 ];
 
 
-// In an attempt to break up the row of buttons into a more visually compact and easy to use interface we
-// calculate the Square root of the total length of the array in order to find the integer less than or equal to the square root
-// we then create a grid with that many columns
-const buttonGridMath = Math.floor(Math.sqrt(relayGPIO.length));
-
-
 // Map each object in the array to the RelayButton component and assign a number based on it's index (+1 to shift everything forward from 0)
-const btnArray = relayGPIO.map((button, index) => <Row><Col><RelayButton value={button.id}>{button.title} {index + 1}</RelayButton></Col></Row>);
+const btnArray = relayGPIO.map((button, index) =>
+    <Row>
+        <Col>
+            <Col>
+                <Button size="lg" onClick={() => {
+
+                }}>
+                    {button.title} {index + 1}
+                </Button>
+            </Col >
+        </Col>
+    </Row>
+);
 
 
 // Export the following React component for use in other components and final rendering
