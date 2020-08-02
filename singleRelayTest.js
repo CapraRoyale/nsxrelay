@@ -1,6 +1,6 @@
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 
-var relayID = 2; // This is the array that contains all GPIO pins used for the relays
+var relayID = 3; // This is the array that contains all GPIO pins used for the relays
 
 var blinkOnce = function (RelayObj) { // Create function to contain a timed switch to test each connected relay
 
@@ -23,7 +23,7 @@ var blinkOnce = function (RelayObj) { // Create function to contain a timed swit
     // setTimeout(endRelay, 5000); //stop blinking after 5 seconds
 
     startRelay();
-    endRelay();
+    // endRelay();
 }
 
 function testOnce() {

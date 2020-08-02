@@ -3,7 +3,6 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import gpio from "onoff/gpio";
 
 // Contain all GPIO pins and associated relay info in an array of objects
 const relayGPIO = [
