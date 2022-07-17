@@ -1,3 +1,18 @@
+# Setup
+
+## Pre-Req's
+
+    * Raspberry Pi
+    * Sainsmart 16-relay board
+    * NPM
+    * Git
+
+---
+
+1. `git pull` repo
+2. navigate into local repo
+3. `npm i` to install required dependencies
+4. `npm start` to run local server
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
